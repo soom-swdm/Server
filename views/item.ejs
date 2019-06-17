@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+  <!-- login form -->
+  <!-- user_id, user_pwd -->
+  <!-- log in(submit), cancel(back) button -->
+  <div id="frame">
+    <form action="/changeitem" method="post">
+      <table>
+        <tr>
+          <td>ID <input type="text" name="ID"></td>
+        </tr>
+        <tr>
+          <td>name <input type="text" name="name"></td>
+        </tr>
+        <tr>
+          <td>persent <input type="text" name="persent"></td>
+        </tr>
+        <tr>
+          <td><button type="submit">저장</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <%if(list.length!=0){%>
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>name</td>
+      <td>persent</td>
+    </tr>
+    <%for(var i=0;i<list.length;i++){%>
+      <tr>
+        <td><%=list[i].ID%></td>
+        <td><%=list[i].name%></td>
+        <td><%=list[i].persent%></td>
+      </tr>
+    <%}%>
+  </table>
+  <%}%>
+</body>
+</html>
