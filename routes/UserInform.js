@@ -11,9 +11,10 @@ router.post('/', function(req, res, next) {
     'ID= "'+req.body['ID']+'"');
   let tier = TRealm.objects('tier').filtered(
     'ID= "'+user[0].tier+'"');
-  user[0].tier=tier[0].name;
+  let json=JSON.parse(JSON.stringify(user[0]));
+  json.tier=tier[0].name.toString();
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.json(user);
+  res.json(json);
   res.end();
 });
 module.exports = router;

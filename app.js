@@ -15,9 +15,9 @@ app.use(express.json());
 app.use('/LogIn', LogIn);
 app.use('/LogOut', LogOut);
 app.use('/SignUp', SignUp);
-app.use('/SeeList',SeeList);
+app.use('/SeeList', SeeList);
 app.use('/SeeHistory', SeeHistory);
-app.use('/UserInform',UserInform);
+app.use('/UserInform', UserInform);
 app.use('/Pay',Pay);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
