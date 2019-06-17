@@ -7,7 +7,7 @@ let Schema = {
     item: 'string',
     amount: 'int',
     flag: 'int',
-    date: 'Date'
+    date: 'date'
   }
 };
 var DATA = new Realm({

@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
       item: item[0].ID,
       amount: parseInt(req.body['amount']),
       flag: parseInt(req.body['flag']),
-      date: req.body['date']
+      date: new Date(req.body['date'])
     });
   });
   res.writeHead(200, {'Content-Type': 'text/plain'});
