@@ -25,6 +25,14 @@ router.post('/', function(req, res, next) {
       },true);
     });
     //티어 승급 추가
+    if(user[0].accumulate>100000){
+      URealm.write(() => {
+        URealm.create('user', {
+          ID: req.body['ID'],
+          tier: (parseInt(user[0].tier)+1).toString();
+        },true);
+      });
+    }
   }else{
     //소모
     URealm.write(() => {

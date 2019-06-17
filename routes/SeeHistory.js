@@ -9,13 +9,23 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.post('/', function(req, res, next) {
   let history = HRealm.objects('history').filtered(
     'user= "'+req.body['user']+'"');
+  let H = new Object();
+  let arr = new Array();
   for(var i=0;i<history.length;i++){
     let item = IRealm.objects('item').filtered(
       'ID= "'+history[i].item+'"');
-    history[i].item=item[0].name;
+    let info = new Object();
+    info.user = history[i].user;
+    info.item = item[0].name;
+    info.amount = history[i].amount;
+    info.flag = history[i].flag;
+    info.date = history[i].date;
+    arr.push(info);
   }
+  H.history = arr;
+  var json = JSON.stringify(H);
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.json(history);
+  res.json(json);
   res.end();
 });
 module.exports = router;
