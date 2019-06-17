@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var changetier = require('./routes/changetier');
+var changeitem = require('./routes/changeitem');
 var LogIn = require('./routes/LogIn');
 var LogOut = require('./routes/LogOut');
 var SignUp = require('./routes/SignUp');

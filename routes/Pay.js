@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
       URealm.write(() => {
         URealm.create('user', {
           ID: req.body['ID'],
-          tier: (parseInt(user[0].tier)+1).toString();
+          tier: (parseInt(user[0].tier)+1).toString()
         },true);
       });
     }
