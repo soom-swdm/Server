@@ -11,7 +11,6 @@ router.post('/', function(req, res, next) {
     'ID= "'+req.body['ID']+'"');
   let tier = TRealm.objects('tier').filtered(
     'ID= "'+user[0].tier+'"');
-  res.writeHead(200, {'Content-Type': 'application/json'});
   res.json(user);
   res.json(tier);
   res.end();
