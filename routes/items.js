@@ -5,6 +5,7 @@ let Schema = {
   primaryKey: 'ID',
   properties: {
     ID: 'string',
+    category: 'string',
     name: 'string',
     persent: 'int'
   }
@@ -13,9 +14,9 @@ var DATA = new Realm({
   path: 'item.realm',
   schema: [Schema],
   encryptionKey: Key,
-  schemaVersion: 1,
+  schemaVersion: 2,
   migration: function(oldRealm, newRealm) {
-    if (oldRealm.schemaVersion < 1) {
+    if (oldRealm.schemaVersion < 2) {
       var oldObjects = oldRealm.objects('item');
       var newObjects = newRealm.objects('item');
       for (var i = 0; i < oldObjects.length; i++) {

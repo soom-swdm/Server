@@ -7,7 +7,7 @@ var HRealm= require('./history');
 var IRealm= require('./items');
 var TRealm= require('./tiers');
 router.use(bodyParser.urlencoded({extended: true}));
-//ID item Date flag amount
+//ID item Date flag amount number
 router.post('/', function(req, res, next) {
   let user = Realm.objects('user').filtered(
     'ID= "'+req.body['ID']+'"');
@@ -20,12 +20,12 @@ router.post('/', function(req, res, next) {
     URealm.write(() => {
       URealm.create('user', {
         ID: req.body['ID'],
-        point: user[0].point+(parseInt(req.body['amount'])*(item[0].persent+tier[0].persent)/100),
-        accumulate: user[0].accumulate+(parseInt(req.body['amount'])*(item[0].persent+tier[0].persent)/100)
+        point: user[0].point+(parseInt(req.body['amount'])*parseInt(req.body['number'])*(item[0].persent+tier[0].persent)/100),
+        accumulate: user[0].accumulate+(parseInt(req.body['amount'])*parseInt(req.body['number'])*(item[0].persent+tier[0].persent)/100)
       },true);
     });
     //티어 승급 추가
-    if(user[0].accumulate>100000){
+    if(user[0].accumulate>10000&&parseInt(user[0].tier)==0){
       URealm.write(() => {
         URealm.create('user', {
           ID: req.body['ID'],
@@ -38,17 +38,18 @@ router.post('/', function(req, res, next) {
     URealm.write(() => {
       URealm.create('user', {
         ID: req.body['ID'],
-        point: user[0].point-parseInt(req.body['amount']),
+        point: user[0].point-(parseInt(req.body['amount'])*parseInt(req.body['number'])),
       },true);
     });
   }
   //히스토리 추가
-
+  let point=parseInt(req.body['amount'])*parseInt(req.body['number']);
+  point=(parseInt(req.body['flag'])==0)?point*(item[0].persent+tier[0].persent)/100:point;
   HRealm.write(() => {
     HRealm.create('history', {
       user: req.body['ID'],
       item: item[0].ID,
-      amount: parseInt(req.body['amount']),
+      amount: point,
       flag: parseInt(req.body['flag']),
       date: new Date(req.body['date'])
     });
