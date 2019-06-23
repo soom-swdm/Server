@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
   let item = IRealm.objects('item').filtered(
     'name= "'+req.body['item']+'"');
   if(item.length==0){
-    res.writeHead(204, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write("fail");
   }else{
     res.writeHead(200, {'Content-Type': 'text/plain'});

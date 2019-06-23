@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write("success");
   }else{
-    res.writeHead(204, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write("already exist");
   }
   res.end();

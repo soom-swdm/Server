@@ -9,12 +9,12 @@ router.post('/', function(req, res, next) {
   let user=Realm.objects('user').filtered(
     'ID= "'+req.body['ID']+'"');
   if(user.length==0){
-    res.writeHead(204, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write("wrong ID");
   }else{
     user.filtered('password= "'+req.body['password']+'"');
     if(user.length==0){
-      res.writeHead(204, {'Content-Type': 'text/plain'});
+      res.writeHead(200, {'Content-Type': 'text/plain'});
       res.write("wrong password");
     }else{
       res.writeHead(200, {'Content-Type': 'text/plain'});
