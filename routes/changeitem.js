@@ -14,6 +14,7 @@ router.post('/', function(req, res, next) {
     Realm.create('item', {
       ID: req.body['ID'],
       name: req.body['name'],
+      category: req.body['category'],
       persent: parseInt(req.body['persent']),
     },true);
   });
