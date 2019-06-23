@@ -7,6 +7,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.post('/', function(req, res, next) {
   let user=Realm.objects('user').filtered(
     'ID= "'+req.body['ID']+'"');
+  let info = new Object();
   if(user.length==0){
     //user create
     Realm.write(() => {
@@ -19,12 +20,13 @@ router.post('/', function(req, res, next) {
         accumulate: 0
       });
     });
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write("success");
+    info.message= "success";
   }else{
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write("already exist");
+    info.message= "already exist";
   }
+  var json = JSON.stringify(info);
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.json(json);
   res.end();
 });
 module.exports = router;

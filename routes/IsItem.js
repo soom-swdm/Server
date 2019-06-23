@@ -8,13 +8,15 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.post('/', function(req, res, next) {
   let item = IRealm.objects('item').filtered(
     'name= "'+req.body['item']+'"');
+  let info = new Object();
   if(item.length==0){
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write("fail");
+    info.message= "fail";
   }else{
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write("success");
+    info.message= "success";
   }
+  var json = JSON.stringify(info);
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.json(json);
   res.end();
 });
 module.exports = router;
