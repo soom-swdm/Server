@@ -7,6 +7,7 @@ let Schema = {
     ID: 'string',
     category: 'string',
     name: 'string',
+    price: 'int',
     persent: 'int'
   }
 };
@@ -14,9 +15,9 @@ var DATA = new Realm({
   path: 'item.realm',
   schema: [Schema],
   encryptionKey: Key,
-  schemaVersion: 2,
+  schemaVersion: 3,
   migration: function(oldRealm, newRealm) {
-    if (oldRealm.schemaVersion < 2) {
+    if (oldRealm.schemaVersion < 3) {
       var oldObjects = oldRealm.objects('item');
       var newObjects = newRealm.objects('item');
       for (var i = 0; i < oldObjects.length; i++) {

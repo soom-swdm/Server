@@ -1,4 +1,4 @@
-//아이템 존재여부
+//숨활동소개
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -8,14 +8,14 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.post('/', function(req, res, next) {
   let item = Realm.objects('item').filtered(
     'ID= "'+req.body['ID']+'"');
-  let info = new Object();
   if(item.length==0){
-    info.message= "fail";
+    let info = new Object();
+    info.message= "dosen't exist";
+    var json = JSON.stringify(info);
+    res.json(json);
   }else{
-    info.message= "success";
+    res.json(item);
   }
-  var json = JSON.stringify(info);
-  res.json(json);
   res.end();
 });
 module.exports = router;

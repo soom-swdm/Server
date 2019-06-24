@@ -33,6 +33,22 @@ router.post('/', function(req, res, next) {
         },true);
       });
     }
+    if(user[0].accumulate>50000&&parseInt(user[0].tier)==1){
+      URealm.write(() => {
+        URealm.create('user', {
+          ID: req.body['ID'],
+          tier: (parseInt(user[0].tier)+1).toString()
+        },true);
+      });
+    }
+    if(user[0].accumulate>100000&&parseInt(user[0].tier)==2){
+      URealm.write(() => {
+        URealm.create('user', {
+          ID: req.body['ID'],
+          tier: (parseInt(user[0].tier)+1).toString()
+        },true);
+      });
+    }
   }else{
     //소모
     URealm.write(() => {
