@@ -31,7 +31,6 @@ router.post('/', function(req, res, next) {
   info.point = user[0].point;
   info.accumulate = user[0].accumulate;
   var json = JSON.stringify(info);
-  res.writeHead(200, {'Content-Type': 'application/json'});
   res.json(json);
   res.end();
 });

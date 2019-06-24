@@ -25,7 +25,6 @@ router.post('/', function(req, res, next) {
     info.message= "already exist";
   }
   var json = JSON.stringify(info);
-  res.writeHead(200, {'Content-Type': 'application/json'});
   res.json(json);
   res.end();
 });

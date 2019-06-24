@@ -7,7 +7,6 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/', function(req, res, next) {
   let item = Realm.objects('item');
-  res.writeHead(200, {'Content-Type': 'application/json'});
   res.json(item);
   res.end();
 });

@@ -24,7 +24,6 @@ router.post('/', function(req, res, next) {
   }
   H.history = arr;
   var json = JSON.stringify(H);
-  res.writeHead(200, {'Content-Type': 'application/json'});
   res.json(json);
   res.end();
 });
