@@ -10,16 +10,16 @@ router.use(bodyParser.urlencoded({extended: true}));
 //ID item Date flag amount number
 router.post('/', function(req, res, next) {
   let user = Realm.objects('user').filtered(
-    'ID= "'+req.body['ID']+'"');
+    'ID= "'+req.body['user']+'"');
   let item = IRealm.objects('item').filtered(
-    'name= "'+req.body['item']+'"');
+    'ID= "'+req.body['item']+'"');
   let tier = TRealm.objects('tier').filtered(
     'ID= "'+user[0].tier+'"');
   if(parseInt(req.body['flag'])==0){
     //적립
     URealm.write(() => {
       URealm.create('user', {
-        ID: req.body['ID'],
+        ID: req.body['user'],
         point: user[0].point+(parseInt(req.body['amount'])*parseInt(req.body['number'])*(item[0].persent+tier[0].persent)/100),
         accumulate: user[0].accumulate+(parseInt(req.body['amount'])*parseInt(req.body['number'])*(item[0].persent+tier[0].persent)/100)
       },true);
@@ -28,7 +28,7 @@ router.post('/', function(req, res, next) {
     if(user[0].accumulate>10000&&parseInt(user[0].tier)==0){
       URealm.write(() => {
         URealm.create('user', {
-          ID: req.body['ID'],
+          ID: req.body['user'],
           tier: (parseInt(user[0].tier)+1).toString()
         },true);
       });
@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
     if(user[0].accumulate>50000&&parseInt(user[0].tier)==1){
       URealm.write(() => {
         URealm.create('user', {
-          ID: req.body['ID'],
+          ID: req.body['user'],
           tier: (parseInt(user[0].tier)+1).toString()
         },true);
       });
@@ -44,7 +44,7 @@ router.post('/', function(req, res, next) {
     if(user[0].accumulate>100000&&parseInt(user[0].tier)==2){
       URealm.write(() => {
         URealm.create('user', {
-          ID: req.body['ID'],
+          ID: req.body['user'],
           tier: (parseInt(user[0].tier)+1).toString()
         },true);
       });
@@ -53,7 +53,7 @@ router.post('/', function(req, res, next) {
     //소모
     URealm.write(() => {
       URealm.create('user', {
-        ID: req.body['ID'],
+        ID: req.body['user'],
         point: user[0].point-(parseInt(req.body['amount'])*parseInt(req.body['number'])),
       },true);
     });
@@ -63,7 +63,7 @@ router.post('/', function(req, res, next) {
   point=(parseInt(req.body['flag'])==0)?point*(item[0].persent+tier[0].persent)/100:point;
   HRealm.write(() => {
     HRealm.create('history', {
-      user: req.body['ID'],
+      user: req.body['user'],
       item: item[0].ID,
       amount: point,
       flag: parseInt(req.body['flag']),
