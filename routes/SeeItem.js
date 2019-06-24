@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
     var json = JSON.stringify(info);
     res.json(json);
   }else{
-    res.json(item);
+    res.json(item[0]);
   }
   res.end();
 });
