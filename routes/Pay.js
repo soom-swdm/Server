@@ -9,7 +9,7 @@ var TRealm= require('./tiers');
 router.use(bodyParser.urlencoded({extended: true}));
 //ID item Date flag amount number
 router.post('/', function(req, res, next) {
-  let user = Realm.objects('user').filtered(
+  let user = URealm.objects('user').filtered(
     'ID= "'+req.body['user']+'"');
   let item = IRealm.objects('item').filtered(
     'ID= "'+req.body['item']+'"');
