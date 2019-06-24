@@ -15,6 +15,7 @@ router.post('/', function(req, res, next) {
       ID: req.body['ID'],
       name: req.body['name'],
       category: req.body['category'],
+      price: parseInt(req.body['price']),
       persent: parseInt(req.body['persent']),
     },true);
   });
