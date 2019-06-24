@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 router.post('/', function(req, res, next) {
   let info = new Object();
   info.message= "success";
-  var json = JSON.stringify(info);
-  res.json(json);
+  res.json(info);
   res.end();
 });
 module.exports = router;

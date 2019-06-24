@@ -19,8 +19,7 @@ router.post('/', function(req, res, next) {
       info.message= "success";
     }
   }
-  var json = JSON.stringify(info);
-  res.json(json);
+  res.json(info);
   res.end();
 });
 module.exports = router;

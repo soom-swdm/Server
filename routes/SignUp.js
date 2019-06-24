@@ -24,8 +24,7 @@ router.post('/', function(req, res, next) {
   }else{
     info.message= "already exist";
   }
-  var json = JSON.stringify(info);
-  res.json(json);
+  res.json(info);
   res.end();
 });
 module.exports = router;

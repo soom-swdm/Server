@@ -23,8 +23,7 @@ router.post('/', function(req, res, next) {
     arr.push(info);
   }
   H.history = arr;
-  var json = JSON.stringify(H);
-  res.json(json);
+  res.json(H);
   res.end();
 });
 module.exports = router;

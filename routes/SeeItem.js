@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
     let info = new Object();
     info.message= "dosen't exist";
     var json = JSON.stringify(info);
-    res.json(json);
+    res.json(info);
   }else{
     res.json(item[0]);
   }

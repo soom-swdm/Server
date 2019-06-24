@@ -30,8 +30,7 @@ router.post('/', function(req, res, next) {
   info.tier = tier[0].name;
   info.point = user[0].point;
   info.accumulate = user[0].accumulate;
-  var json = JSON.stringify(info);
-  res.json(json);
+  res.json(info);
   res.end();
 });
 module.exports = router;
